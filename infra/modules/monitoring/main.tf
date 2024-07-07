@@ -1,3 +1,9 @@
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
+
+# Monitoring Dashboard
 resource "google_monitoring_dashboard" "my_dashboard" {
   dashboard_json = jsonencode({
     displayName = "My Application Dashboard"
@@ -39,12 +45,74 @@ resource "google_monitoring_dashboard" "my_dashboard" {
               scale = "LINEAR"
             }
           }
+        },
+        {
+          title = "Disk I/O"
+          xyChart = {
+            dataSets = [
+              {
+                timeSeriesQuery = {
+                  prometheusQueryLanguageQuery = {
+                    prometheusQuery = "rate(container_fs_io_time_seconds_total{container_name=\"my-container\"}[5m])"
+                  }
+                }
+              }
+            ]
+            yAxis = {
+              label = "Disk I/O"
+              scale = "LINEAR"
+            }
+          }
+        },
+        {
+          title = "Network Traffic"
+          xyChart = {
+            dataSets = [
+              {
+                timeSeriesQuery = {
+                  prometheusQueryLanguageQuery = {
+                    prometheusQuery = "sum(rate(container_network_receive_bytes_total{container_name=\"my-container\"}[5m])) by (container_name)"
+                  }
+                }
+              },
+              {
+                timeSeriesQuery = {
+                  prometheusQueryLanguageQuery = {
+                    prometheusQuery = "sum(rate(container_network_transmit_bytes_total{container_name=\"my-container\"}[5m])) by (container_name)"
+                  }
+                }
+              }
+            ]
+            yAxis = {
+              label = "Network Traffic"
+              scale = "LINEAR"
+            }
+          }
+        },
+        {
+          title = "Error Rate"
+          xyChart = {
+            dataSets = [
+              {
+                timeSeriesQuery = {
+                  prometheusQueryLanguageQuery = {
+                    prometheusQuery = "sum(rate(container_errors_total{container_name=\"my-container\"}[5m])) by (container_name)"
+                  }
+                }
+              }
+            ]
+            yAxis = {
+              label = "Error Rate"
+              scale = "LINEAR"
+            }
+          }
         }
       ]
     }
   })
 }
 
+# Alert Policy for High CPU Usage
 resource "google_monitoring_alert_policy" "high_cpu_alert" {
   display_name = "High CPU Usage Alert"
   combiner     = "OR"
@@ -62,5 +130,5 @@ resource "google_monitoring_alert_policy" "high_cpu_alert" {
       }
     }
   }
-  notification_channels = ["projects/your-project-id/notificationChannels/your-notification-channel-id"]
+  notification_channels = ["projects/${var.project_id}/notificationChannels/${var.notification_channel_id}"]
 }
