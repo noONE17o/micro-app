@@ -21,4 +21,7 @@ output "db_instance_address" {
   value = module.sql.db_instance_address
 }
 
+output "db_instance_private_ip" {
+  value = module.sql.db_instance_private_ip
+}
 
