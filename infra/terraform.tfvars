@@ -1,0 +1,5 @@
+project_id = "my-project-mic-428213"
+region = "us-central1"
+network_name = "your-network-name"
+cluster_name = "your-cluster-name"
+db_password = "your-database-password"
