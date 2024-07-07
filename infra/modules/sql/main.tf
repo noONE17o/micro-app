@@ -24,6 +24,3 @@ resource "google_sql_user" "mysql_user" {
 }
 
 
-output "instance_name" {
-  value = google_sql_database_instance.mysql_instance.name
-}

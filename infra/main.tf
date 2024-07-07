@@ -1,7 +1,3 @@
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
 
 module "network" {
   source     = "./modules/network"
@@ -38,14 +34,3 @@ module "monitoring" {
   region     = var.region
 }
 
-output "gke_cluster_name" {
-  value = module.gke.cluster_name
-}
-
-output "gke_cluster_endpoint" {
-  value = module.gke.endpoint
-}
-
-output "sql_instance_name" {
-  value = module.sql.instance_name
-}

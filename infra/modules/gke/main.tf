@@ -40,10 +40,3 @@ resource "google_container_node_pool" "backend_pool" {
   }
 }
 
-output "cluster_name" {
-  value = google_container_cluster.primary.name
-}
-
-output "endpoint" {
-  value = google_container_cluster.primary.endpoint
-}

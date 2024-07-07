@@ -23,15 +23,3 @@ resource "google_compute_subnetwork" "database_subnet" {
   region        = var.region
   network       = google_compute_network.vpc_network.name
 }
-
-output "network" {
-  value = google_compute_network.vpc_network.name
-}
-
-output "subnets" {
-  value = {
-    frontend = google_compute_subnetwork.frontend_subnet.name
-    backend  = google_compute_subnetwork.backend_subnet.name
-    database = google_compute_subnetwork.database_subnet.name
-  }
-}
