@@ -1,7 +1,3 @@
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
 
 # Monitoring Dashboard
 resource "google_monitoring_dashboard" "my_dashboard" {
