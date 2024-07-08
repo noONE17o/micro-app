@@ -25,3 +25,8 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "notification_channel_id" {
+  description = "The ID of the notification channel to use for alerts"
+  type        = string
+}
