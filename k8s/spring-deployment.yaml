@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: spring-app
-        image: gcr.io/your-project-id/spring-app:latest
+        image: gcr.io/my-project-mic-428213/spring-app:latest
         ports:
         - containerPort: 8080
         env:

@@ -7,3 +7,11 @@ Variables and Outputs: Use variables for inputs and outputs for important resour
 State Management: Ensure you have a remote backend for storing Terraform state securely.
 
 Documentation: Include documentation in your Terraform files for clarity.
+
+DIRECTORY ARCHITECTURE:
+
+- infra/modules/gke: Module for creating the GKE cluster.
+- infra/modules/monitoring: Module for setting up monitoring.
+- infra/modules/network: Module for creating VPC and subnets.
+- infra/modules/sql: Module for creating the SQL instance.
+- infra/modules/Service-Accounts: Module for creating service accounts.

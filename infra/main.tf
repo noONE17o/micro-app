@@ -32,5 +32,6 @@ module "monitoring" {
   source     = "./modules/monitoring"
   project_id = var.project_id
   region     = var.region
+  notification_channel_id = var.notification_channel_id
 }
 

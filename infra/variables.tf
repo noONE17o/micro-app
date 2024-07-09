@@ -28,5 +28,6 @@ variable "db_password" {
 
 variable "notification_channel_id" {
   description = "The ID of the notification channel to use for alerts"
+  default = "17782734381812390268"
   type        = string
 }
